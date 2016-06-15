@@ -120,6 +120,12 @@ function Player(name, health, strength, speed) {
  * @name checkPack
  */
 
+Player.prototype.checkPack = function() {
+  var check = this.getPack();
+  for (var i = 0; i < pack.length; i++) {
+    console.log(check[i]);
+  }
+};
 
 /**
  * Player Class Method => takeItem(item)
