@@ -66,6 +66,7 @@ function Food(name, energy) {
  * -----------------------------
  */
 
+Food.prototype = Object.create(Item.prototype);
 
 
 /**
