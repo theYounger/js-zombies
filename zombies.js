@@ -183,8 +183,15 @@ Player.prototype.takeItem = function(item) {
  */
 
 Player.prototype.discardItem = function(item) {
-
-}
+  if (this.getPack().indexOf(item) !== -1) {
+    this.getPack().splice(this.getPack().indexOf(item), 1);
+    console.log(this.name + ' discarded ' + item.name);
+    return true;
+  } else {
+    console.log(item.name + ' was not found');
+    return false;
+  }
+};
 
 /**
  * Player Class Method => equip(itemToEquip)
@@ -371,8 +378,8 @@ Player.prototype.discardItem = function(item) {
  * Feel free to edit this and check your game logic.
  */
 function runGame() {
-   var player = new Player("Joan", 500, 30, 70);
-  // var zombie = new Zombie(40, 50, 20);
+  var player = new Player("Joan", 500, 30, 70);
+   // var zombie = new Zombie(40, 50, 20);
    // var charger = new FastZombie(175, 25, 60);
    // var tank = new StrongZombie(250, 100, 15);
    // var spitter = new RangedZombie(150, 20, 20);
@@ -382,14 +389,14 @@ function runGame() {
    var sandwich = new Food("sandwich", 30);
    var chainsaw = new Weapon("chainsaw", 25);
 
-   player.takeItem(shovel);
-   player.takeItem(sandwich);
-   player.takeItem(chainsaw);
-  // player.discardItem(new Weapon("scythe", 21));
-  // player.discardItem(shovel);
-  // player.checkPack();
-  // player.takeItem(shovel);
-  // player.checkPack();
+  player.takeItem(shovel);
+  player.takeItem(sandwich);
+  player.takeItem(chainsaw);
+  player.discardItem(new Weapon("scythe", 21));
+  player.discardItem(shovel);
+  player.checkPack();
+  player.takeItem(shovel);
+  player.checkPack();
 
   // player.equippedWith();
   // player.useItem(chainsaw);
