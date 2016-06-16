@@ -122,7 +122,7 @@ function Player(name, health, strength, speed) {
 
 Player.prototype.checkPack = function() {
   var check = this.getPack();
-  for (var i = 0; i < pack.length; i++) {
+  for (var i = 0; i < check.length; i++) {
     console.log(check[i]);
   }
 };
@@ -145,6 +145,16 @@ Player.prototype.checkPack = function() {
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
 
+Player.prototype.takeItem = function(item) {
+  if(this.getPack().length < 3) {
+    this.getPack().push(item);
+    console.log(this.name + " equipped " + item.name);
+    return true;
+  } else {
+    console.log("Item could not be stored -- Pack full!");
+    return false;
+  }
+};
 
 /**
  * Player Class Method => discardItem(item)
@@ -172,6 +182,9 @@ Player.prototype.checkPack = function() {
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
+Player.prototype.discardItem = function(item) {
+
+}
 
 /**
  * Player Class Method => equip(itemToEquip)
@@ -358,20 +371,20 @@ Player.prototype.checkPack = function() {
  * Feel free to edit this and check your game logic.
  */
 function runGame() {
-  // var player = new Player("Joan", 500, 30, 70);
+   var player = new Player("Joan", 500, 30, 70);
   // var zombie = new Zombie(40, 50, 20);
-  // var charger = new FastZombie(175, 25, 60);
-  // var tank = new StrongZombie(250, 100, 15);
-  // var spitter = new RangedZombie(150, 20, 20);
-  // var boomer = new ExplodingZombie(50, 15, 10);
+   // var charger = new FastZombie(175, 25, 60);
+   // var tank = new StrongZombie(250, 100, 15);
+   // var spitter = new RangedZombie(150, 20, 20);
+   // var boomer = new ExplodingZombie(50, 15, 10);
 
-  // var shovel = new Weapon("shovel", 15);
-  // var sandwich = new Food("sandwich", 30);
-  // var chainsaw = new Weapon("chainsaw", 25);
+   var shovel = new Weapon("shovel", 15);
+   var sandwich = new Food("sandwich", 30);
+   var chainsaw = new Weapon("chainsaw", 25);
 
-  // player.takeItem(shovel);
-  // player.takeItem(sandwich);
-  // player.takeItem(chainsaw);
+   player.takeItem(shovel);
+   player.takeItem(sandwich);
+   player.takeItem(chainsaw);
   // player.discardItem(new Weapon("scythe", 21));
   // player.discardItem(shovel);
   // player.checkPack();
@@ -393,3 +406,5 @@ function runGame() {
   // console.log("After health: " + player.health);
   // player.checkPack();
 }
+
+runGame();
