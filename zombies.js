@@ -122,9 +122,11 @@ function Player(name, health, strength, speed) {
 
 Player.prototype.checkPack = function() {
   var check = this.getPack();
+  var output = '';
   for (var i = 0; i < check.length; i++) {
-    console.log(check[i]);
+    output += check[i];
   }
+  console.log(output);
 };
 
 /**
